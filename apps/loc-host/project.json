@@ -4,6 +4,19 @@
   "projectType": "application",
   "sourceRoot": "apps/loc-host/src",
   "prefix": "localize-repro",
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+      "en": {
+        "translation": "apps/loc-host/i18n/messages.en.xlf",
+        "baseHref": ""
+      },
+      "lt": {
+        "translation": "apps/loc-host/i18n/messages.lt.xlf",
+        "baseHref": ""
+      }
+    }
+  },
   "targets": {
     "build": {
       "executor": "@nrwl/angular:webpack-browser",
@@ -24,6 +37,8 @@
       },
       "configurations": {
         "production": {
+          "localize": ["en", "lt"],
+          "extractLicenses": false,
           "budgets": [
             {
               "type": "initial",
@@ -71,7 +86,8 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "loc-host:build"
+        "browserTarget": "loc-host:build",
+        "outputPath": "apps/loc-host/i18n"
       }
     },
     "lint": {
